@@ -1,0 +1,113 @@
+###COMMON APIS
+
+###employee registration
+POST http://localhost:4000/employee/register
+Content-Type: application/json
+
+{
+  "firstName":"Deepthi",
+  "lastName":"Purijala", 
+  "email":"deepthi@westagilelabs.com",
+  "password":"deepthi",
+  "mobile":9398692163, 
+  "address":{
+    "street":"siddiq nagar",
+    "city":"Hyderabad",
+    "state":"Telangana",
+    "pincode":500085
+  }
+}
+
+###employee login
+POST http://localhost:4000/employee/login
+Content-Type: application/json
+
+{
+  "email":"srikar@westagilelabs.com",
+  "password":"srikar"
+}
+
+###employees can update/edit their details
+PUT http://localhost:4000/employee/edit/empId/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzcmlrYXJAd2VzdGFnaWxlbGFicy5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2ODYyODgwMDcsImV4cCI6MTY4NjMwNjAwN30.oWOZeIbt__NzKu9JhWs7VyuNiqw39qnMYTemnyAh0H0
+Content-Type: application/json
+
+{
+  "firstName":"Sreekar"
+}
+
+
+###ADMIN APIS
+
+###get all employees details
+GET http://localhost:4000/admin/employees
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzcmlrYXJAd2VzdGFnaWxlbGFicy5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2ODYyODgwMDcsImV4cCI6MTY4NjMwNjAwN30.oWOZeIbt__NzKu9JhWs7VyuNiqw39qnMYTemnyAh0H0
+###get employee by id
+GET http://localhost:4000/admin/employee/empId/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzcmlrYXJAd2VzdGFnaWxlbGFicy5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2ODYyODgwMDcsImV4cCI6MTY4NjMwNjAwN30.oWOZeIbt__NzKu9JhWs7VyuNiqw39qnMYTemnyAh0H0
+###admin can delete an employee
+PUT http://localhost:4000/admin/employee/empId/7
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzcmlrYXJAd2VzdGFnaWxlbGFicy5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2ODYyODgwMDcsImV4cCI6MTY4NjMwNjAwN30.oWOZeIbt__NzKu9JhWs7VyuNiqw39qnMYTemnyAh0H0
+###admin can add project
+POST http://localhost:4000/admin/project
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzcmlrYXJAd2VzdGFnaWxlbGFicy5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2ODYyODgwMDcsImV4cCI6MTY4NjMwNjAwN30.oWOZeIbt__NzKu9JhWs7VyuNiqw39qnMYTemnyAh0H0
+Content-Type: application/json
+
+{
+  "name" : "project2",
+  "managerId": 3,
+  "typeOfProject" : "development",
+  "startDate" : "2023-06-08",
+  "endDate" : "2023-09-11",
+  "createdBy" : 1
+}
+
+###admin adds employees to project
+POST http://localhost:4000/admin/empId/3/projectId/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJzcmlrYXJAd2VzdGFnaWxlbGFicy5jb20iLCJyb2xlIjoiQWRtaW4iLCJpYXQiOjE2ODYyODgwMDcsImV4cCI6MTY4NjMwNjAwN30.oWOZeIbt__NzKu9JhWs7VyuNiqw39qnMYTemnyAh0H0
+Content-Type: application/json
+
+{
+  "empId":3,
+  "projectId":1,
+  "createdBy":1,
+  "department":"development",
+  "role":"employee"
+}
+
+
+###EMPLOYEE APIS
+
+
+###clock in
+POST http://localhost:4000/employee/clock-in/empId/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkZWVwdGhpQHdlc3RhZ2lsZWxhYnMuY29tIiwicm9sZSI6ImVtcGxveWVlIiwiaWF0IjoxNjg2MjE2OTA0LCJleHAiOjE2ODYyMzQ5MDR9.NmVBF1IBHJSFHyaySl_exkQ3PIEQeb2Om9KCZJpJIYc
+Content-Type: application/json
+
+{
+  "comment":"work from office",
+  "empId":1,
+  "createdBy":1
+}
+
+###clock out
+PUT http://localhost:4000/employee/clock-out/empId/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkZWVwdGhpQHdlc3RhZ2lsZWxhYnMuY29tIiwicm9sZSI6ImVtcGxveWVlIiwiaWF0IjoxNjg2MjE2OTA0LCJleHAiOjE2ODYyMzQ5MDR9.NmVBF1IBHJSFHyaySl_exkQ3PIEQeb2Om9KCZJpJIYc
+
+
+###adding timesheet
+POST http://localhost:4000/employee/timesheet/empId/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkZWVwdGhpQHdlc3RhZ2lsZWxhYnMuY29tIiwicm9sZSI6ImVtcGxveWVlIiwiaWF0IjoxNjg2MjE2OTA0LCJleHAiOjE2ODYyMzQ5MDR9.NmVBF1IBHJSFHyaySl_exkQ3PIEQeb2Om9KCZJpJIYc
+Content-Type: application/json
+
+{
+  "startTime":"09:27:34",
+  "endTime":"18:30:45",
+  "comments":"worked on node.js",
+  "employeeProjectId":1,
+  "createdBy":2
+}
+
+###deleting timesheet by using timesheetId
+DELETE http://localhost:4000/employee/timesheet/timesheetId/1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkZWVwdGhpQHdlc3RhZ2lsZWxhYnMuY29tIiwicm9sZSI6ImVtcGxveWVlIiwiaWF0IjoxNjg2MjE2OTA0LCJleHAiOjE2ODYyMzQ5MDR9.NmVBF1IBHJSFHyaySl_exkQ3PIEQeb2Om9KCZJpJIYc
